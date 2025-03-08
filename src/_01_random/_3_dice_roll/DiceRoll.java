@@ -31,7 +31,7 @@ public class DiceRoll {
 	public static void main(String[] args) {
 		new DiceRoll().run();
 	}
-	
+
 	public void run() {
 		try {
 			oneImg = new ImageIcon(getClass().getResource("dice 1.png"));
@@ -49,21 +49,33 @@ public class DiceRoll {
 
 		rollButton.addActionListener((e) -> {
 			//number between 1 and 6
-			int randomChoice = dice.nextInt(6) + 1;
+			for( int i = 0; i < 20; i++) {
+				int randomChoice = dice.nextInt(6);
+
+				// 2. Fix the code below so that it displays the correct image
+				if (randomChoice == 0) {
+					label.setIcon(oneImg);
+				} else if (randomChoice == 1) {
+					label.setIcon(twoImg);
+				} else if (randomChoice == 2) {
+					label.setIcon(threeImg);
+				} else if (randomChoice == 3) {
+					label.setIcon(fourImg);
+				} else if (randomChoice == 4) {
+					label.setIcon(fiveImg);
+				} else {
+					label.setIcon(sixImg);
+				}
+				
+				panel.paintComponents(panel.getGraphics());
 			
-			// 2. Fix the code below so that it displays the correct image
-			if (randomChoice == 0) {
-				label.setIcon(oneImg);
-			} else if (randomChoice == 0) {
-				label.setIcon(twoImg);
-			} else if (randomChoice == 0) {
-				label.setIcon(threeImg);
-			} else if (randomChoice == 0) {
-				label.setIcon(fourImg);
-			} else if (randomChoice == 0) {
-				label.setIcon(fiveImg);
-			} else {
-				label.setIcon(sixImg);
+			
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 

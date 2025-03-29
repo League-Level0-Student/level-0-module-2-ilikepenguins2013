@@ -5,9 +5,11 @@
  // 1. Create three integer variables to represent the x, y, and the size of the ellipse
     int dotX=150;
     int dotY=150;
-    int dotSize=300;
-    int time=0;
+    int dotSize=25;
+    int time=2;
+    int score=0;
     void setup() {
+      textSize(40);
       // 2. Set the size of your sketch
       size(1920,900);
       frameRate(60);
@@ -15,7 +17,6 @@
     }
     
     void draw() {
-    
       // 3. Set the background color of your sketch
       background(#F7FFFD);
       
@@ -26,10 +27,20 @@
     
      //System.out.println(frameCount);
       if(frameCount%60==0) {
-        time++;
+        time--;
+      }
+      fill(#FF0000);
+      text("time left: " + time, 1700,40);
+      text("score: " + score, 30,40);
+      if(time<=0) {
+        background(#FFFFFF);
+        textSize(70);
+       
+        text("you lose l bozo u stink", 700,450);
+        text("ur score was "+score, 800,100);
+        dotX = -100;
       }
       
-      text("time left: " + time, 1820,20);
       
     }
     
@@ -48,6 +59,8 @@
       if(distance<dotSize/2) {
         dotX=(int) random(width);
         dotY=(int) random(height);
+        time = 2;
+        score++;
       }
        
       
